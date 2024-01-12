@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends 'core/base.html' %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Portada{% endblock %}</title>
+
+    {% load static %}
+</head>
+<body>
+    {% block background %}{% static 'core/img/home-bg.jpg' %}{% endblock %}
+
+    {% block headers %}
+    <h1>Antonio Abolafio</h1>
+    <span class="subheading">Técnico Informático</span>
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

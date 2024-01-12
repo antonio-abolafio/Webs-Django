@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends 'core/base.html' %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Contacto{% endblock %}</title>
+
+    {% load static %}
+</head>
+<body>
+    {% block background %}{% static 'core/img/contact-bg.jpg' %}{% endblock %}
+
+    {% block headers %}
+    <h1>Contacto</h1>
+    <span class="subheading">Asesoría</span>
+    {% endblock %}
+
+    {% block content %}
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <p>Puedes contactar conmigo a través del correo:
+                <a href="mailto:antonio_abolafio@hotmail.com">antonio_abolafio@hotmail.com</a>
+            </p>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>
