@@ -147,3 +147,9 @@ CKEDITOR_CONFIGS = {
         ]
     }
 }
+
+# Email config
+EMAIL_HOST = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = ''
