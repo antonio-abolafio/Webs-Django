@@ -24,4 +24,7 @@ urlpatterns = [
     
     # Path core
     path('', include('core.urls')),
+    
+    # Path pages
+    path('pages/', include('pages.urls')),
 ]
