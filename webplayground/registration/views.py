@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
+from .forms import UserCretionFormWithEmail
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django import forms
@@ -6,7 +6,7 @@ from django import forms
 
 # Create your views here.
 class SignUpView(CreateView):
-    form_class = UserCreationForm
+    form_class = UserCretionFormWithEmail
     template_name = 'registration/signup.html'
 
     def get_success_url(self):
@@ -19,6 +19,11 @@ class SignUpView(CreateView):
             'placeholder': 'Nombre de usuario',
             'class': 'form-control',
         })
+        form.fields['email'].widget = forms.EmailInput(attrs={
+            'placeholder': 'Dirección de email',
+            'class': 'form-control',
+        })
+
         form.fields['password1'].widget = forms.PasswordInput(attrs={
             'placeholder': 'Contraseña',
             'class': 'form-control',
