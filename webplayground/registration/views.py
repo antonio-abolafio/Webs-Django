@@ -1,4 +1,4 @@
-from .forms import UserCretionFormWithEmail
+from .forms import UserCretionFormWithEmail, ProfileForm
 from django.views.generic import UpdateView
 from django.views.generic.edit import CreateView
 from django.utils.decorators import method_decorator
@@ -41,8 +41,7 @@ class SignUpView(CreateView):
 
 @method_decorator(login_required, name='dispatch')
 class ProfileUpdateView(UpdateView):
-    model = Profile
-    fields = ['avatar', 'bio', 'link']
+    form_class = ProfileForm
     success_url = reverse_lazy('profile')
     template_name = 'registration/profile_form.html'
 
