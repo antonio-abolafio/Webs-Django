@@ -1,4 +1,4 @@
-from .forms import UserCretionFormWithEmail, ProfileForm
+from .forms import UserCreationFormWithEmail, ProfileForm, EmailForm
 from django.views.generic import UpdateView
 from django.views.generic.edit import CreateView
 from django.utils.decorators import method_decorator
@@ -10,7 +10,7 @@ from .models import Profile
 
 # Create your views here.
 class SignUpView(CreateView):
-    form_class = UserCretionFormWithEmail
+    form_class = UserCreationFormWithEmail
     template_name = 'registration/signup.html'
 
     def get_success_url(self):
@@ -49,3 +49,24 @@ class ProfileUpdateView(UpdateView):
         # Recuperar el objeto que se va a editar
         profile, created = Profile.objects.get_or_create(user=self.request.user)
         return profile
+
+
+@method_decorator(login_required, name='dispatch')
+class EmailUpdate(UpdateView):
+    form_class = EmailForm
+    success_url = reverse_lazy('profile')
+    template_name = 'registration/profile_email_form.html'
+
+    def get_object(self, queryset=None):
+        # Recuperar el objeto que se va a editar
+        return self.request.user
+
+    def get_context_data(self, **kwargs):
+        context = super(EmailUpdate, self).get_context_data(**kwargs)
+        # Modificar en tiempo real
+        form = context['form']
+        form.fields['email'].widget = forms.EmailInput(attrs={
+            'class': 'form-control , mt-2',
+            'placeholder': 'Email'
+        })
+        return context
