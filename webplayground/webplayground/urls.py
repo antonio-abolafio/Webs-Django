@@ -35,6 +35,9 @@ urlpatterns = [
     
     # Path registration
     path('accounts/', include('registration.urls')),
+
+    # Path profiles
+    path('profiles/', include('profiles.urls')),
 ]
 
 if settings.DEBUG:
