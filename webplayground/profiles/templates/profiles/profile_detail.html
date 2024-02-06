@@ -1,15 +1,29 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% block title %}Perfil de {{ profile.user }}{% endblock %}
 
 {% block content %}
-    {% if profile.avatar %}
-        <img src="{{profile.avatar.url}}">
-    {% else %}
-        <img src="{% static 'registration/img/no-avatar.jpg' %}">
-    {% endif %}
-    <h3>{{profile.user}}</h3>
-    {% if profile.bio %}<p>{{ profile.bio }}</p>{% endif %}
-    {% if profile.link %}<p><a href="{{ profile.link }}">{{ profile.link }}</a></p
-    >{% endif %}
-    <p><a href="{% url 'profile-list' %}">Ir atrás</a></p>
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-md-9 mx-auto mb-5">
+            <div class="row">
+                <div class="col-md-2">
+                    {% if profile.avatar %}
+                    <img src="{{profile.avatar.url}}">
+                    {% else %}
+                    <img src="{% static 'registration/img/no-avatar.jpg' %}">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10">
+                    <h3>{{profile.user}}</h3>
+                    {% if profile.bio %}<p>{{ profile.bio }}</p>{% endif %}
+                    {% if profile.link %}<p><a href="{{ profile.link }}">{{ profile.link }}</a></p>{% endif %}
+                    <p><a href="{% url 'profile-list' %}">Ir atrás</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
