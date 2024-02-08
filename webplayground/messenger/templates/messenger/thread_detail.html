@@ -17,7 +17,7 @@
           <div class="col-md-4">
             <!-- Con una búsqueda inversa user.threads también podemos conseguir los hilos de un usuario -->
             {% for thread in request.user.threads.all %}
-              <!-- Sólo mostraremos un Thread si tiene como mínimo 1 mensaje -->
+              <!-- Solo mostraremos un Thread si tiene como mínimo 1 mensaje -->
               {% if thread.messages.all|length > 0 %}
                 <div class="mb-3">
                   <!-- Recorremos los miembros del hilo menos el propio request.user -->
@@ -52,16 +52,50 @@
             <div class="thread" id="thread">
               {% for message in object.messages.all %}
                 <!-- Dependiendo del usuario asignamos una clase con un color de fondo u otro en el mensaje -->
-                <div {% if request.user == message.user %}class="mine mb-3"{% else %}class="other mb-3"{% endif %}>
-                  <small><i>Hace {{thread.messages.last.created|timesince}}</i></small><br>
-                  {{message.content}}
+                <div {% if request.user == message.user %}class="mine mb-3"
+                     {% else %}class="other mb-3"
+                     {% endif %}>
+                  <small><i>Hace {{ message.created | timesince }}</i></small><br>
+                    <b>{{ message.user }}: </b>
+                    {{ message.message }}
                 </div>
               {% endfor %}
             </div>
             <!-- Aquí crearemos el formulario -->
-          </div>
+            <textarea id="content" class="form-control mb-2" rows="2" placeholder="Escribe tu mensaje aquí"></textarea>
+            <button id="send" class="btn btn-primary btn-sm btn-block" disabled>Petición asíncrona de prueba</button>
+            <script>
+                let send = document.getElementById("send");
+                send.addEventListener("click", function(){
+                    let content = encodeURIComponent(document.getElementById("content")
+                        .value);
+                    if (content.length > 0){
+                        const url = "{% url 'messenger:add' thread.pk %}" + "?content=" + content;
+                        fetch(url, {'credentials': 'include'})
+                            .then(response => response.json())
+                            .then(function(data){
+                                alert(data.created);
+                            })
+                            .catch(function(error) {
+                                console.error('Error:', error);
+                            });
+                    }
+                });
+
+                // Evento que activa o desactiva el botón en función de si hay contenido
+                let content = document.getElementById("content");
+                content.addEventListener("keyup", function () {
+                    if(!this.checkValidity() || !this.value) {
+                        send.disabled = true;
+                    } else {
+                        send.disabled = false;
+                    }
+                });
+                </script>
+              </div>
+            </div>
         </div>
-    </div>
+      </div>
   </div>
 </main>
 {% endblock %}
