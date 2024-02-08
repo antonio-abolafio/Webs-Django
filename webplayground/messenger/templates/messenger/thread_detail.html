@@ -63,24 +63,32 @@
             </div>
             <!-- Aquí crearemos el formulario -->
             <textarea id="content" class="form-control mb-2" rows="2" placeholder="Escribe tu mensaje aquí"></textarea>
-            <button id="send" class="btn btn-primary btn-sm btn-block" disabled>Petición asíncrona de prueba</button>
+            <button id="send" class="btn btn-primary btn-sm btn-block" data-url="{% url 'messenger:add' thread.pk %}">Enviar mensaje</button>
             <script>
+                let addMessageUrl = "{{ add_message_url }}";
                 let send = document.getElementById("send");
                 send.addEventListener("click", function(){
-                    let content = encodeURIComponent(document.getElementById("content")
-                        .value);
+                    let content = encodeURIComponent(document.getElementById("content").value);
                     if (content.length > 0){
-                        const url = "{% url 'messenger:add' thread.pk %}" + "?content=" + content;
+                        document.getElementById("content").value = "";
+                        send.disabled = true
+                        let url = this.getAttribute("data-url") + "?message=" + content;
                         fetch(url, {'credentials': 'include'})
                             .then(response => response.json())
                             .then(function(data){
-                                alert(data.created);
+                                if (data.created) {
+                                    let message = document.createElement("div");
+                                    message.classList.add("mine", "mb-3");
+                                    message.innerHTML = '<small><i>Hace unos segundos</i></small><br>' + decodeURIComponent(content);
+                                    document.getElementById("thread").appendChild(message);
+                                    ScrollBottomInThread();
+                                }
                             })
                             .catch(function(error) {
                                 console.error('Error:', error);
                             });
                     }
-                });
+                })
 
                 // Evento que activa o desactiva el botón en función de si hay contenido
                 let content = document.getElementById("content");
@@ -90,7 +98,14 @@
                     } else {
                         send.disabled = false;
                     }
-                });
+                })
+
+                // Forzar el scroll del hilo
+                function ScrollBottomInThread(){
+                    let thread = document.getElementById("thread")
+                    thread.scrollTop = thread.scrollHeight;
+                }
+                ScrollBottomInThread();
                 </script>
               </div>
             </div>
