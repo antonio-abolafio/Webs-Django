@@ -13,6 +13,11 @@
                     {% else %}
                     <img src="{% static 'registration/img/no-avatar.jpg' %}">
                     {% endif %}
+                    {% if request.user != profile.user %}
+                        <a href="{% url 'messenger:start' profile.user.username %}"
+                           class="btb btn-primary btn-sm btn-block mt-3">Enviar
+                            mensaje</a>
+                    {% endif %}
                 </div>
             </div>
             <div class="row">

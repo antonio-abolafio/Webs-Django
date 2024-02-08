@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-"""from django.db.models.signals import m2m_changed"""
+from django.db.models.signals import m2m_changed
 
 
 # Create your models here.
@@ -32,11 +32,13 @@ class ThreadManager(models.Manager):
 class Thread(models.Model):
     users = models.ManyToManyField(User, related_name='threads')
     messages = models.ManyToManyField(Message)
-
+    updated = models.DateTimeField(auto_now=True)
     objects = ThreadManager()
 
+    class Meta:
+        ordering = ['-updated']
 
-"""
+
 def messages_changed(sender, **kwargs):
     instance = kwargs.pop('instance', None)
     action = kwargs.pop('action', None)
@@ -45,16 +47,19 @@ def messages_changed(sender, **kwargs):
 
     false_pk_set = set()
 
-    if action is "pre_add":
+    if action == "pre_add":
         for msg_pk in pk_set:
             msg = Message.objects.get(pk=msg_pk)
-            if msg.User not in instance.users.all():
+            if msg.user not in instance.users.all():
                 print(f"Ups el usuario {msg.user} no forma parte del hilo")
                 false_pk_set.add(msg_pk)
 
     # Buscar los mensajes de false_pk_set
     pk_set.difference_update(false_pk_set)
 
+    # Actualizar los hilos por mensajes más recientes
+    instance.save(update_fields=['updated'])
+
+
 
 m2m_changed.connect(messages_changed, sender=Thread.messages.through)
-"""
