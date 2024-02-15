@@ -6,7 +6,8 @@ from products.models import Product
 
 # Create your views here.
 class ProductListView(ListView):
-    pass
+    model = Product
+    template_name = "products/shop.html"
 
 
 class ProductDetailView(DetailView):

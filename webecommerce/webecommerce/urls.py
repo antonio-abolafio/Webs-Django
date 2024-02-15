@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from products.urls import products_patterns
+from . import settings
 
 urlpatterns = [
     # Admin paths
@@ -29,3 +30,7 @@ urlpatterns = [
     # Products path
     path('products/', include(products_patterns)),
 ]
+
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
