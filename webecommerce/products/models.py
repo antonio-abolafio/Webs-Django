@@ -56,13 +56,12 @@ def get_image_upload_path(instance, filename):
 class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    short_description = models.TextField(null=True, blank=True)
     description = models.TextField()
     image = models.ImageField(upload_to=get_image_upload_path, blank=True, null=True)
-    category = models.ForeignKey(Category, null=True, default=None, on_delete=models.CASCADE,
-                                   verbose_name='Categoría')
-    brand = models.ForeignKey(Brand, null=True, default=None, on_delete=models.SET_NULL,
-                              verbose_name='Marca')
-    tags = models.ManyToManyField(Tag, verbose_name='Etiquetas')
+    category = models.ForeignKey(Category, null=True, default=None, on_delete=models.CASCADE, verbose_name='Categoría')
+    brand = models.ForeignKey(Brand, null=True, default=None, on_delete=models.SET_NULL, verbose_name='Marca')
+    tags = models.ManyToManyField(Tag, blank=True, verbose_name='Etiquetas')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Fecha de creación')
     updated = models.DateTimeField(auto_now=True, verbose_name='Fecha de edición')
 
