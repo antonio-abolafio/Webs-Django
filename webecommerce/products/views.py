@@ -1,5 +1,4 @@
 from django.views.generic import DetailView, ListView
-from django.shortcuts import get_object_or_404
 from .models import Product
 
 
@@ -21,9 +20,18 @@ class ProductDetailView(DetailView):
         return Product.objects.get(name=name)
 
 
-class BrandListView(ListView):
+class CategoryListView(ListView):
     model = Product
     template_name = "products/category.html"
+
+    def get_queryset(self):
+        category_name = self.kwargs.get("category")
+        return Product.objects.filter(category__name=category_name)
+
+
+class BrandListView(ListView):
+    model = Product
+    template_name = "products/brand.html"
 
     def get_queryset(self):
         brand_name = self.kwargs.get("brand")
