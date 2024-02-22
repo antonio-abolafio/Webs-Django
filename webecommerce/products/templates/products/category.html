@@ -132,11 +132,11 @@
             </div>
             <div class="row">
               <!-- PRODUCT-->
-            {% for product in products %}
+            {% for product in product_list %}
               <div class="col-lg-4 col-sm-6">
                 <div class="product text-center">
                   <div class="mb-3 position-relative">
-                    <div class="badge text-white bg-"></div><a class="d-block" href="{% url 'products:detail' product.name %}">
+                    <div class="badge text-white bg-"></div><a class="d-block" href="detail.html">
                       <img class="img-fluid w-100" src="{{product.image.url}}" alt="..."></a>
                     <div class="product-overlay">
                       <ul class="mb-0 list-inline">
