@@ -1,0 +1,87 @@
+<!-- Extensions -->
+{% extends 'core/base.html' %}
+
+<!-- Contento in head -->
+{% block title %}Equipo de Fútbol{% endblock %}
+
+<!-- Content in body -->
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <h1>Bienvenido al Fútbol Club</h1>
+        <p>El mejor equipo de fútbol</p>
+        <a href="#" class="btn btn-primary btn-lg">Únete al Club</a>
+    </div>
+</section>
+
+<!-- Latest Matches Section -->
+<section class="container my-5">
+    <h2 class="text-center">Últimos Partidos</h2>
+    <div class="row mt-4">
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Partido 1</h5>
+                    <p class="card-text">Fecha: 2024-05-01</p>
+                    <p class="card-text">Resultado: 2-1</p>
+                    <a href="#" class="btn btn-primary">Detalles</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Partido 2</h5>
+                    <p class="card-text">Fecha: 2024-04-25</p>
+                    <p class="card-text">Resultado: 0-0</p>
+                    <a href="#" class="btn btn-primary">Detalles</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Partido 3</h5>
+                    <p class="card-text">Fecha: 2024-04-18</p>
+                    <p class="card-text">Resultado: 3-2</p>
+                    <a href="#" class="btn btn-primary">Detalles</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonial">
+    <div class="container">
+        <h2 class="text-center">Testimonios</h2>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">"El equipo es increíble y los partidos son emocionantes. ¡Altamente recomendado!"</p>
+                        <h5 class="card-title">Juan Pérez</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">"Gran ambiente en cada partido. Definitivamente seguiré apoyando al equipo."</p>
+                        <h5 class="card-title">Ana García</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">"Los jugadores son muy talentosos y siempre dan lo mejor de sí."</p>
+                        <h5 class="card-title">Carlos López</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

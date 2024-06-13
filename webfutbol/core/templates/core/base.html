@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap CSS local -->
+    <link href="{% static 'core/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'core/css/styles.css' %}" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">Fútbol Club</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/players/' %}active{% endif %}" href="{% url 'players' %}">Jugadores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/matches/' %}active{% endif %}" href="{% url 'matches' %}">Partidos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Historia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Noticias</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2024 Fútbol Club. Todos los derechos reservados.</p>
+            <a href="#" class="text-light">Política de Privacidad</a> |
+            <a href="#" class="text-light">Términos de Servicio</a>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS local -->
+    <script src="{% static 'core/js/bootstrap.bundle.min.js' %}" ></script>
+</body>
+</html>

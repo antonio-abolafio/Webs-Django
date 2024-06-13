@@ -1,0 +1,44 @@
+.navbar-brand, .nav-link {
+    color: #fff !important;
+}
+.nav-link.active {
+    color: #0000FF;
+    background-color: #007bff;
+    border-radius: 0.25rem;
+}
+.hero {
+    background: url('https://via.placeholder.com/1920x600') no-repeat center center;
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding: 100px 0;
+}
+.hero h1 {
+    font-size: 4rem;
+}
+.hero p {
+    font-size: 1.5rem;
+}
+.product-img, .player-img {
+    max-height: 200px;
+    object-fit: cover;
+}
+.testimonial {
+    background-color: #f8f9fa;
+    padding: 50px 0;
+}
+.footer {
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+}
+.filter-section h6 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+.filter-section ul {
+    padding-left: 1rem;
+}
+.filter-section input[type="checkbox"], .filter-section input[type="date"], .filter-section input[type="text"], .filter-section select {
+    margin-bottom: 0.5rem;
+}
