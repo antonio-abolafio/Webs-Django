@@ -1,0 +1,58 @@
+<!-- Extensions -->
+{% extends 'core/base.html' %}
+
+<!-- Content in head -->
+{% block title %}Partidos - Fútbol Club{% endblock %}
+
+<!-- Content in body -->
+{% block content %}
+<!-- Main Container -->
+<div class="container-fluid">
+    <div class="row mt-4">
+        <!-- Filters Section -->
+        <aside class="col-md-3">
+            <h5>Filtrar por</h5>
+            <div class="filter-section mb-4">
+                <h6>Fecha</h6>
+                <input type="date" id="filterDate" class="form-control">
+            </div>
+            <div class="filter-section mb-4">
+                <h6>Oponente</h6>
+                <input type="text" id="filterOpponent" class="form-control" placeholder="Buscar oponente">
+            </div>
+            <div class="filter-section mb-4">
+                <h6>Ordenar por</h6>
+                <select class="form-select" id="sortOrder">
+                    <option value="date">Fecha</option>
+                    <option value="result">Resultado</option>
+                </select>
+            </div>
+        </aside>
+        <!-- Matches Section -->
+        <section class="col-md-9">
+            <div class="row" id="matchesGrid">
+                <!-- Add Matches -->
+                {% for match in matches %}
+                <div class="col-md-4 mb-4 match-card" data-date="{{match.date}}" data-opponent="{{match.visiting_team}}" data-result="{{match.result}}">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="team-shields">
+                                <img src="{{ match.local_team.shield.url }}"
+                                     alt="{{ match.local_team.name }} Escudo" class="team-shield img-fluid">
+                                <img src="{{ match.visiting_team.shield.url }}"
+                                     alt="{{ match.visiting_team.name }} Escudo" class="team-shield img-fluid">
+                            </div>
+                            <h5 class="card-title">{{match.local_team}} vs {{match.visiting_team}}</h5>
+                            <p class="card-text">Fecha: {% if match.date %}
+                                {{match.date}}{% else %}Por definir{% endif %}</p>
+                            <p class="card-text">Resultado: {% if match.result %}
+                                {{match.result}}{% else %}X - X{% endif %}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

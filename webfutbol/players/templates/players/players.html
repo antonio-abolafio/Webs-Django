@@ -1,0 +1,76 @@
+<!-- Extensions -->
+{% extends 'core/base.html' %}
+
+<!-- Contento in head -->
+{% block title %}Jugadores - Fútbol Club{% endblock %}
+
+<!-- Content in body -->
+{% block content %}
+<!-- Main Container -->
+<div class="container-fluid">
+    <div class="row mt-4">
+        <!-- Filters Section -->
+        <aside class="col-md-3">
+            <h5>Filtrar por</h5>
+            <div class="filter-section mb-4">
+                <h6>Posición</h6>
+                <ul class="list-unstyled">
+                    <li><input type="checkbox" id="pos1"> <label for="pos1">Portero</label></li>
+                    <li><input type="checkbox" id="pos2"> <label for="pos2">Defensa</label></li>
+                    <li><input type="checkbox" id="pos3"> <label for="pos3">Centrocampista</label></li>
+                    <li><input type="checkbox" id="pos4"> <label for="pos4">Delantero</label></li>
+                </ul>
+            </div>
+            <div class="filter-section mb-4">
+                <h6>Ordenar por</h6>
+                <select class="form-select" id="sortOrder">
+                    <option value="name">Nombre</option>
+                    <option value="number">Número</option>
+                </select>
+            </div>
+        </aside>
+        <!-- Players Section -->
+        <section class="col-md-9">
+            <div class="row" id="playersGrid">
+                {% for player in players %}
+                <a href="{% url 'statistics' pk=player.pk %}">
+                    <div class="col-md-4 mb-4 player-card" data-name="Juan Pérez" data-number="1" data-position="Portero">
+                        <div class="card">
+                            <img src="{{player.profile.url}}"
+                                 class="card-img-top player-img"
+                                 alt="Juan Pérez">
+                            <div class="card-body">
+                                <h5 class="card-title">{{player.name}}</h5>
+                                <p class="card-text">Número: {{player.soccer_number}}</p>
+                                <p class="card-text">Posición: Portero</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+                <div class="col-md-4 mb-4 player-card" data-name="Carlos Gómez" data-number="5" data-position="Defensa">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/300x200" class="card-img-top player-img" alt="Carlos Gómez">
+                        <div class="card-body">
+                            <h5 class="card-title">Carlos Gómez</h5>
+                            <p class="card-text">Número: 5</p>
+                            <p class="card-text">Posición: Defensa</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 player-card" data-name="Luis Martínez" data-number="10" data-position="Delantero">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/300x200" class="card-img-top player-img" alt="Luis Martínez">
+                        <div class="card-body">
+                            <h5 class="card-title">Luis Martínez</h5>
+                            <p class="card-text">Número: 10</p>
+                            <p class="card-text">Posición: Delantero</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Agrega más jugadores según sea necesario -->
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

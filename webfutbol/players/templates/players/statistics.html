@@ -1,0 +1,50 @@
+<!-- Extensions -->
+{% extends 'core/base.html' %}
+
+<!-- Contento in head -->
+{% block title %}Estadísitcas - Fútbol Club{% endblock %}
+
+<!-- Content in body -->
+{% block content %}
+{% with stat=statistics %}
+<h1>Detalle del Jugador</h1>
+<div class="player-detail">
+    <img src="{{ player.profile.url }}" alt="{{ player.name }}" class="player-photo">
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <td>{{ stat.player.name }} {{ stat.player.last_name }}</td>
+        </tr>
+        <tr>
+            <th>Dorsal</th>
+            <td>{{ stat.player.soccer_number }}</td>
+        </tr>
+        <tr>
+            <th>Edad</th>
+            <td>{{ stat.player.age }}</td>
+        </tr>
+    </table>
+</div>
+<h2>Estadísticas</h2>
+<table class="player-stats">
+    <thead>
+        <tr>
+            <th>Partidos Jugados</th>
+            <th>Minutos Jugados</th>
+            <th>Goles</th>
+            <th>Tarjetas Amarillas</th>
+            <th>Tarjetas Rojas</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ stat.goals }}</td>
+            <td>{{ stat.minutes_played }}</td>
+            <td>{{ stat.goals }}</td>
+            <td>{{ stat.yellow_cards }}</td>
+            <td>{{ stat.red_cards }}</td>
+        </tr>
+    </tbody>
+</table>
+{% endwith %}
+{% endblock %}

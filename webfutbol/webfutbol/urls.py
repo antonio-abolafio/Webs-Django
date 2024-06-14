@@ -19,10 +19,16 @@ from django.urls import path, include
 from django.conf import settings
 
 urlpatterns = [
-    # Paths del core
+    # Core paths
     path('', include('core.urls')),
 
-    # Paths del admin
+    # Matches paths
+    path('matches/', include('matches.urls')),
+
+    # Players paths
+    path('players/', include('players.urls')),
+
+    # Admin paths
     path('admin/', admin.site.urls),
 ]
 

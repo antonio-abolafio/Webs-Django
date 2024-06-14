@@ -1,14 +1,7 @@
 from django.shortcuts import render
+from django.views.generic.base import TemplateView
 
 
 # Create your views here.
-def home(request):
-    return render(request, "core/home.html")
-
-
-def players(request):
-    return render(request, "core/players.html")
-
-
-def matches(request):
-    return render(request, "core/matches.html")
+class HomePageView(TemplateView):
+    template_name = "core/home.html"
