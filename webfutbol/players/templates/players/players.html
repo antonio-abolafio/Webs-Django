@@ -33,7 +33,7 @@
         <section class="col-md-9">
             <div class="row" id="playersGrid">
                 {% for player in players %}
-                <a href="{% url 'statistics' pk=player.pk %}">
+                <a href="{% url 'statistics' slug=player.slug %}">
                     <div class="col-md-4 mb-4 player-card" data-name="Juan Pérez" data-number="1" data-position="Portero">
                         <div class="card">
                             <img src="{{player.profile.url}}"

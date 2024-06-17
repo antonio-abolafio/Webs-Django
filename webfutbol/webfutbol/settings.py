@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-#@cvzz@s&5td@&gcq@#c2nwm=&g6uaa))1yl@p1*b^=$gfo8mh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["futbol.abotec.es", "abotec.es", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -78,14 +78,6 @@ WSGI_APPLICATION = 'webfutbol.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
-
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

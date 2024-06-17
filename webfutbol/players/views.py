@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from .models import Player, Statistic
@@ -15,3 +16,6 @@ class StatisticDetailView(DetailView):
     template_name = "players/statistics.html"
     context_object_name = "statistics"
 
+    def get_object(self, queryset=None):
+        slug = self.kwargs.get("slug")
+        return get_object_or_404(Statistic, player__slug=slug)

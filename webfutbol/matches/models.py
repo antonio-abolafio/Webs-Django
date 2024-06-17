@@ -2,7 +2,7 @@ from django.db import models
 
 class Team(models.Model):
     name = models.CharField(max_length=100, verbose_name="Nombre del Equipo")
-    shield = models.ImageField(upload_to="shields/", verbose_name="Escudo")
+    shield = models.ImageField(upload_to="shields/", default="shields/escudo_vacio.jpg", verbose_name="Escudo")
 
     class Meta:
         verbose_name = "Equipo"

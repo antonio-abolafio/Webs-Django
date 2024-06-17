@@ -9,11 +9,13 @@
 {% with stat=statistics %}
 <h1>Detalle del Jugador</h1>
 <div class="player-detail">
-    <img src="{{ player.profile.url }}" alt="{{ player.name }}" class="player-photo">
+    <img src="{{ stat.player.profile.url }}" alt="{{ stat.player.name }}"
+         class="player-photo">
     <table>
         <tr>
             <th>Nombre</th>
-            <td>{{ stat.player.name }} {{ stat.player.last_name }}</td>
+            <td>{{ stat.player.name }} {% if stat.player.last_name %}
+                {{ stat.player.last_name }}{% endif %}</td>
         </tr>
         <tr>
             <th>Dorsal</th>
@@ -38,7 +40,7 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{ stat.goals }}</td>
+            <td>{{ stat.games_played }}</td>
             <td>{{ stat.minutes_played }}</td>
             <td>{{ stat.goals }}</td>
             <td>{{ stat.yellow_cards }}</td>
