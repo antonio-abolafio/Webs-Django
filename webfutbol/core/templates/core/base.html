@@ -45,6 +45,30 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container text-center">
+            {% if LINK_TWITTER %}
+                <a href="{{LINK_TWITTER}}" class="link">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+            {% endif %}
+            {% if LINK_FACEBOOK %}
+                <a href="{{LINK_FACEBOOK}}" class="link">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+            {% endif %}
+            {% if LINK_INSTAGRAM %}
+                <a href="{{LINK_INSTAGRAM}}" class="link">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+            {% endif %}
             <p>&copy; 2024 Fútbol Club. Todos los derechos reservados.</p>
             <a href="#" class="text-light">Política de Privacidad</a> |
             <a href="#" class="text-light">Términos de Servicio</a>

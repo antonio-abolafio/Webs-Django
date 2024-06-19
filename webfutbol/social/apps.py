@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class PlayersConfig(AppConfig):
+class SocialConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'players'
-    verbose_name = 'Jugadores'
+    name = 'social'
+    verbose_name = 'Redes sociales'
